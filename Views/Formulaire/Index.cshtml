@@ -1,0 +1,68 @@
+﻿@model IEnumerable<PromamecIntranet.Models.FormulaireProjet>
+
+@{
+    ViewData["Title"] = "Liste des formulaires";
+}
+
+<h2 class="mb-3">📄 Liste des formulaires enregistrés</h2>
+
+<form method="get" class="row g-2 mb-4">
+    <div class="col-md-3">
+        <input type="text" name="clientNom" class="form-control" placeholder="🔍 Nom du client" value="@Context.Request.Query["clientNom"]" />
+    </div>
+    <div class="col-md-2">
+        <select name="amssnur" class="form-select">
+            <option value="">📁 AMSSNUR ?</option>
+            <option value="true" selected="@("true" == Context.Request.Query["amssnur"])">Oui</option>
+            <option value="false" selected="@("false" == Context.Request.Query["amssnur"])">Non</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <input type="date" name="dateDebut" class="form-control" value="@Context.Request.Query["dateDebut"]" />
+    </div>
+    <div class="col-md-2">
+        <input type="date" name="dateFin" class="form-control" value="@Context.Request.Query["dateFin"]" />
+    </div>
+    <div class="col-md-3 d-grid gap-2 d-md-flex justify-content-md-end">
+        <button type="submit" class="btn btn-primary">Filtrer</button>
+        <a href="@Url.Action("Index", "Formulaire")" class="btn btn-outline-secondary">Réinitialiser</a>
+    </div>
+</form>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-light">
+        <tr>
+            <th>📌 Projet</th>
+            <th>👤 Client</th>
+            <th>📅 Date</th>
+            <th>📁 AMSSNUR</th>
+            <th>⚙️ Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="5" class="text-center text-muted">Aucun formulaire trouvé.</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var f in Model)
+            {
+                <tr>
+                    <td>@f.NumeroProjet</td>
+                    <td>@f.NomClient</td>
+                    <td>@f.DateCreation.ToString("dd/MM/yyyy")</td>
+                    <td>@(f.DossierAMSSNUR ? "Oui" : "Non")</td>
+                    <td>
+                        <a href="@Url.Action("Details", "Formulaire", new { id = f.Id })" class="btn btn-info btn-sm">Voir</a>
+                        <a href="@Url.Action("Print", "Formulaire", new { id = f.Id })" class="btn btn-secondary btn-sm" target="_blank">Imprimer</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Create", "Formulaire")" class="btn btn-success mt-3">➕ Nouveau formulaire</a>

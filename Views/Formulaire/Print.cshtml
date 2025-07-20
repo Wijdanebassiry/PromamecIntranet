@@ -1,0 +1,71 @@
+﻿@model PromamecIntranet.Models.FormulaireProjet
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Impression Formulaire</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        .section { margin-bottom: 20px; }
+        h2 { border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <h2>Formulaire Projet - Promamec</h2>
+
+    <div class="section">
+        <strong>Projet :</strong> @Model.NumeroProjet<br />
+        <strong>Marché :</strong> @Model.NumeroMarche<br />
+        <strong>Contrat :</strong> @Model.NumeroContrat<br />
+        <strong>Date :</strong> @Model.DateCreation.ToShortDateString()
+    </div>
+
+    <div class="section">
+        <strong>Client :</strong> @Model.NomClient<br />
+        <strong>Contact :</strong> @Model.ContactClient<br />
+        <strong>Adresse :</strong> @Model.AdresseLivraison
+    </div>
+
+    <div class="section">
+        <strong>Modalités de paiement :</strong> @Model.ModalitePaiement<br />
+        <strong>Livraison :</strong> @Model.DelaiLivraison?.ToShortDateString()<br />
+        <strong>Exécution :</strong> @Model.DelaiExecution?.ToShortDateString()
+    </div>
+
+    <div class="section">
+        <strong>Garantie :</strong> @Model.DureeGarantie<br />
+        <strong>Formation :</strong> @Model.DetailFormation
+    </div>
+
+    <div class="section">
+        <strong>AMSSNUR :</strong> @(Model.DossierAMSSNUR ? "✔ Oui" : "✘ Non")<br />
+        <strong>Contrat Maintenance :</strong> @(Model.ContratMaintenance ? "✔ Oui" : "✘ Non")
+    </div>
+
+    <div class="section">
+        <strong>Équipements :</strong> @Model.Equipements<br />
+        <strong>Accessoires :</strong> @Model.Accessoires
+    </div>
+
+    <div class="section">
+        <strong>Travaux Promamec :</strong><br />
+        @Model.TravauxPromamec
+    </div>
+
+    <div class="section">
+        <strong>Commentaires :</strong><br />
+        @Model.Commentaires
+    </div>
+
+    <script>
+        window.onload = function () {
+            window.print();
+        }
+    </script>
+</body>
+</html>

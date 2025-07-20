@@ -1,0 +1,97 @@
+﻿@model PromamecIntranet.Models.FormulaireProjet
+
+@{
+    ViewData["Title"] = "Créer un formulaire";
+}
+
+<h2>Créer un formulaire</h2>
+
+<form asp-action="Create" enctype="multipart/form-data" method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <label asp-for="NumeroProjet" class="form-label"></label>
+            <input asp-for="NumeroProjet" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label asp-for="NumeroMarche" class="form-label"></label>
+            <input asp-for="NumeroMarche" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label asp-for="NumeroContrat" class="form-label"></label>
+            <input asp-for="NumeroContrat" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label asp-for="NomClient" class="form-label"></label>
+            <input asp-for="NomClient" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label asp-for="ContactClient" class="form-label"></label>
+            <input asp-for="ContactClient" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label asp-for="AdresseLivraison" class="form-label"></label>
+            <input asp-for="AdresseLivraison" class="form-control" />
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="ModalitePaiement" class="form-label"></label>
+            <input asp-for="ModalitePaiement" class="form-control" />
+        </div>
+
+        <div class="col-md-3">
+            <label asp-for="DelaiLivraison" class="form-label"></label>
+            <input asp-for="DelaiLivraison" class="form-control" type="date" />
+        </div>
+
+        <div class="col-md-3">
+            <label asp-for="DelaiExecution" class="form-label"></label>
+            <input asp-for="DelaiExecution" class="form-control" type="date" />
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="DureeGarantie" class="form-label"></label>
+            <input asp-for="DureeGarantie" class="form-control" />
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="DetailFormation" class="form-label"></label>
+            <textarea asp-for="DetailFormation" class="form-control"></textarea>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="Equipements" class="form-label"></label>
+            <textarea asp-for="Equipements" class="form-control"></textarea>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="Accessoires" class="form-label"></label>
+            <textarea asp-for="Accessoires" class="form-control"></textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label asp-for="TravauxPromamec" class="form-label"></label>
+            <textarea asp-for="TravauxPromamec" class="form-control"></textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label asp-for="Commentaires" class="form-label"></label>
+            <textarea asp-for="Commentaires" class="form-control"></textarea>
+        </div>
+
+        <div class="col-md-6 mt-3">
+            <input asp-for="DossierAMSSNUR" type="checkbox" /> Dossier AMSSNUR requis
+        </div>
+
+        <div class="col-md-6 mt-3">
+            <input asp-for="ContratMaintenance" type="checkbox" /> Contrat de maintenance
+        </div>
+
+        <div class="col-md-12 mt-4">
+            <label>Fichier Excel (à importer)</label>
+            <input type="file" name="excelFile" class="form-control" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-4">💾 Enregistrer</button>
+    <a asp-action="Index" class="btn btn-secondary mt-4">Annuler</a>
+</form>
